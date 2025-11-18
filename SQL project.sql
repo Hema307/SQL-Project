@@ -43,6 +43,42 @@ select  max(Driver_Ratings) as Max_rating,
 min(Driver_Ratings) as Min_rating
 from ola_project where Vehicle_Type ='Prime Sedan';
 
+#7.  Retrieve all rides where payment was made using UPI
+create view UPI_payment AS
+select * from ola_project 
+where Payment_method = 'UPI';
+select * from UPI_payment;
+
+#8. Find the averaage customer rating per vehicle type:
+create view AVG_Cust_Rating AS
+select Vehicle_Type, AVG(Customer_Rating) as avg_customer_rating
+from ola_project
+group by Vehicle_Type;
+select * from AVG_Cust_Rating;
+
+#9. Calculate the total booking values of rides completed successfully:
+create view Total_successfull_values AS
+select sum(Booking_Value) as total_successful_values
+from ola_project
+where Booking_Status='Success';
+select * from Total_successfull_values;
+
+#10. List all incomplete rides along with the reason:
+create view Incomplete_Rides_Reasons AS
+select Booking_Id,Incomplete_Rides_Reason
+from ola_project
+where Incomplete_Rides='Yes';
+select * from Incomplete_Rides_Reasons;
+
+
+
+
+
+
+
+
+
+
 
 
 
